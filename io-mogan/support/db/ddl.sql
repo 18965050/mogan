@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS `mogan` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE `test`  (
+`test_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+`name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+PRIMARY KEY (`test_id`) USING BTREE,
+INDEX `idx_test`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;

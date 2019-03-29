@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>cn.xyz</groupId>
+  <artifactId>io-mogan</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>io-mogan</name>
+  <description>mogan services</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.3.RELEASE</version>
+  </parent>
+
+  <modules>
+    <module>io-mogan-api</module>
+    <module>io-mogan-impl</module>
+  </modules>
+
+
+  <issueManagement>
+    <system>Git@xyz</system>
+    <url>http://git.xyz.cn/io/io-mogan/issues</url>
+  </issueManagement>
+
+  <scm>
+    <url>http://git.xyz.cn/io/io-mogan</url>
+    <connection>scm:git@git.xyz.cn:10022/io/io-mogan.git</connection>
+  </scm>
+  <!--设定团队 发布仓库， maven 发布前确认仓库名称与地址和本地的 settings.xml 中配置相同 -->
+  <distributionManagement>
+    <repository>
+      <id>ins-releases</id>
+      <name>新一站 Release 仓库</name>
+      <url>http://maven.mic.com/nexus/content/repositories/ins-releases/
+      </url>
+    </repository>
+    <snapshotRepository>
+      <id>ins-snapshots</id>
+      <name>新一站 Snapshot 仓库</name>
+      <url>http://maven.mic.com/nexus/content/repositories/ins-snapshots/
+      </url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <properties>
+    <commons-lang.version>2.4</commons-lang.version>
+    <commons-collections.version>3.2.1</commons-collections.version>
+    <ctrip-apollo.version>1.0.0-SNAPSHOT</ctrip-apollo.version>
+    <io-mogan.version>1.0.0-SNAPSHOT</io-mogan.version>
+    <spring-framework.version>5.1.5.RELEASE</spring-framework.version>
+    <chaos.version>1.1.11</chaos.version>
+    <spring-boot-dubbo-starter.version>2.0.0</spring-boot-dubbo-starter.version>
+    <spring-boot-mybatis-starter.version>1.3.2</spring-boot-mybatis-starter.version>
+    <spring-boot-orika-starter.version>1.8.0</spring-boot-orika-starter.version>
+    <mybatis.version>3.4.6</mybatis.version>
+    <mybatis-spring.version>1.3.2</mybatis-spring.version>
+    <spring-boot-druid-starter.version>1.1.10</spring-boot-druid-starter.version>
+    <jedis.version>2.9.0</jedis.version>
+    <netty.version>4.1.27.Final</netty.version>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>cn.xyz</groupId>
+        <artifactId>io-mogan-api</artifactId>
+        <version>${io-mogan.version}</version>
+      </dependency>
+
+      <!-- =================Apache Commons========================== -->
+      <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>${commons-lang.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-collections</groupId>
+        <artifactId>commons-collections</artifactId>
+        <version>${commons-collections.version}</version>
+      </dependency>
+
+      <!-- =================XYZ========================== -->
+      <dependency>
+        <groupId>cn.xyz</groupId>
+        <artifactId>chaos</artifactId>
+        <version>${chaos.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- =================Config========================== -->
+      <dependency>
+        <groupId>com.ctrip.framework.apollo</groupId>
+        <artifactId>apollo-client</artifactId>
+        <version>${ctrip-apollo.version}</version>
+      </dependency>
+
+      <!-- =================Spring Framework========================== -->
+      <!-- 固定spring模块的版本号, 防止其他依赖引入变更 -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+
+      <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+      <version>${spring-framework.version}</version>
+      </dependency>
+
+      <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring-framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring-framework.version}</version>
+      </dependency>
+
+      <!-- =================Dubbo========================== -->
+      <dependency>
+        <groupId>com.alibaba.spring.boot</groupId>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>${spring-boot-dubbo-starter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>redis.clients</groupId>
+        <artifactId>jedis</artifactId>
+        <version>${jedis.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-all</artifactId>
+        <version>${netty.version}</version>
+      </dependency>
+
+      <!-- =================Database========================== -->
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>${spring-boot-mybatis-starter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>${spring-boot-druid-starter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>${mybatis.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>${mybatis-spring.version}</version>
+      </dependency>
+
+      <!-- =================Bean Mapping========================== -->
+      <dependency>
+        <groupId>net.rakugakibox.spring.boot</groupId>
+        <artifactId>orika-spring-boot-starter</artifactId>
+        <version>${spring-boot-orika-starter.version}</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <showWarnings>true</showWarnings>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+
+</project>
